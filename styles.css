@@ -1,0 +1,925 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+/* NVIDIA Color Palette */
+:root {
+  --nvidia-green: #76b900;
+  --nvidia-dark-green: #5d9400;
+  --nvidia-light-green: #8bc500;
+  --nvidia-black: #000000;
+  --nvidia-white: #ffffff;
+  --nvidia-gray: #1a1a1a;
+  --nvidia-light-gray: #f5f5f5;
+
+  /* Microsoft App Colors */
+  --ms-word-blue: #185abd;
+  --ms-excel-green: #107c41;
+  --ms-powerpoint-orange: #d24726;
+  --ms-outlook-blue: #0078d4;
+}
+
+/* Header Styles */
+.header {
+  background: var(--nvidia-black);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.microsoft-logo {
+  height: 24px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+.nav-menu a {
+  color: var(--nvidia-white);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 13px;
+  padding: 16px 0;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-menu a:hover {
+  color: var(--nvidia-green);
+}
+
+.user-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  position: relative;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  color: var(--nvidia-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sign-in-btn {
+  background: none;
+  border: none;
+  color: var(--nvidia-white);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search-btn:hover,
+.sign-in-btn:hover {
+  color: var(--nvidia-green);
+}
+
+/* Search Bar */
+.search-container {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--nvidia-white);
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  min-width: 300px;
+  z-index: 1001;
+}
+
+.search-container.active {
+  display: block;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--nvidia-green);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #4b0082, #ff8c00);
+  color: var(--nvidia-white);
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-text {
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background: var(--nvidia-green);
+  color: var(--nvidia-white);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background: var(--nvidia-dark-green);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  border: 1px solid var(--nvidia-white);
+}
+
+.cta-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.app-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  background-color: white;
+}
+
+.app-icon:hover {
+  transform: scale(1.1);
+}
+
+.app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.word {
+  background-color: var(--ms-word-blue);
+}
+
+.excel {
+  background-color: var(--ms-excel-green);
+}
+
+.powerpoint {
+  background-color: var(--ms-powerpoint-orange);
+}
+
+.outlook {
+  background-color: var(--ms-outlook-blue);
+}
+
+.hero-image {
+  position: relative;
+  z-index: 1;
+}
+
+.floating-image {
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Products Section */
+.products-section {
+  padding: 80px 20px;
+  background: var(--nvidia-white);
+}
+
+.products-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--nvidia-black);
+  font-weight: 600;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+  color: #666;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.product-card {
+  background: var(--nvidia-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 25px;
+}
+
+.product-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--nvidia-black);
+}
+
+.product-description {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.product-link {
+  color: var(--nvidia-green);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.product-link:hover {
+  color: var(--nvidia-dark-green);
+}
+
+.product-link::after {
+  content: "→";
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.product-link:hover::after {
+  transform: translateX(5px);
+}
+
+/* Copilot Section */
+.copilot-section {
+  background: var(--nvidia-white);
+  color: var(--nvidia-black);
+  padding: 80px 20px;
+}
+
+.copilot-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.copilot-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.copilot-text {
+  max-width: 500px;
+}
+
+.copilot-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--nvidia-black);
+}
+
+.copilot-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.copilot-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Office Apps Section */
+.office-section {
+  padding: 80px 20px;
+  background: var(--nvidia-light-gray);
+}
+
+.office-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.office-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.office-card {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.office-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.office-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.office-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.word-icon {
+  background-color: var(--ms-word-blue);
+}
+
+.excel-icon {
+  background-color: var(--ms-excel-green);
+}
+
+.powerpoint-icon {
+  background-color: var(--ms-powerpoint-orange);
+}
+
+.outlook-icon {
+  background-color: var(--ms-outlook-blue);
+}
+
+.office-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.office-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Windows Section */
+.windows-section {
+  padding: 80px 20px;
+  background: white;
+}
+
+.windows-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.windows-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.windows-image {
+  flex: 1;
+}
+
+.windows-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.windows-text {
+  flex: 1;
+}
+
+.windows-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.windows-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  background: var(--nvidia-black);
+  color: #fff;
+  padding: 60px 20px 30px;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  color: var(--nvidia-green);
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--nvidia-green);
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--nvidia-green);
+}
+
+.footer-bottom p {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background-color: var(--nvidia-white);
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: var(--nvidia-green);
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: var(--nvidia-green);
+  color: var(--nvidia-white);
+  padding: 15px 20px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(118, 185, 0, 0.3);
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+  z-index: 1500;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .hero-content,
+  .copilot-content,
+  .windows-content {
+    flex-direction: column;
+  }
+
+  .hero-text,
+  .copilot-text,
+  .windows-text {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .app-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Microsoft Office 365 Apps Section */
+.section-title-spaced {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: 60px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.office-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.office-app-card {
+  background: white;
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.office-app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.office-app-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.office-app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.word-app {
+  background-color: #185abd;
+}
+
+.excel-app {
+  background-color: #107c41;
+}
+
+.powerpoint-app {
+  background-color: #d24726;
+}
+
+.outlook-app {
+  background-color: #0078d4;
+}
+
+.app-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.app-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.app-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-learn-more {
+  color: #0078d4;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 2px solid #0078d4;
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.app-learn-more:hover {
+  color: var(--nvidia-green);
+  border-color: var(--nvidia-green);
+}
+
+/* Responsive adjustments for Office Apps */
+@media (max-width: 768px) {
+  .section-title-spaced {
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .office-apps-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .office-app-card {
+    padding: 30px 20px;
+  }
+}
