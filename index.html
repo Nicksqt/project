@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft - Cloud, Computers, Apps & Gaming</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+
+        /* NVIDIA Color Palette */
+        :root {
+            --nvidia-green: #76B900;
+            --nvidia-dark-green: #5d9400;
+            --nvidia-light-green: #8bc500;
+            --nvidia-black: #000000;
+            --nvidia-white: #ffffff;
+            --nvidia-gray: #1a1a1a;
+            --nvidia-light-gray: #f5f5f5;
+        }
+
+        /* Header - H&M UI Style with NVIDIA Colors */
+        .header {
+            background: var(--nvidia-black);
+            padding: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(118, 185, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .microsoft-logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--nvidia-white);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--nvidia-white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--nvidia-green);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--nvidia-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-btn, .sign-in-btn {
+            background: none;
+            border: none;
+            color: var(--nvidia-white);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-btn:hover, .sign-in-btn:hover {
+            background: var(--nvidia-gray);
+        }
+
+        .search-btn svg, .sign-in-btn svg {
+            margin-right: 5px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            background: var(--nvidia-white);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 20px;
+            min-width: 300px;
+        }
+
+        .search-container.active {
+            display: block;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--nvidia-green);
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+        }
+
+        /* Hero Section - NVIDIA Style with slide1.avif Background */
+        .hero {
+            background: linear-gradient(135deg, var(--nvidia-black) 0%, var(--nvidia-gray) 50%, var(--nvidia-black) 100%), url('images/slide1.avif') center/cover no-repeat;
+            background-blend-mode: overlay;
+            color: var(--nvidia-white);
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, var(--nvidia-green) 1%, transparent 2%), 
+                linear-gradient(-45deg, transparent 0%, var(--nvidia-green) 1%, transparent 2%);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, var(--nvidia-green) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--nvidia-green) 0%, transparent 50%);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--nvidia-white), var(--nvidia-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cta-button {
+            background: var(--nvidia-green);
+            color: var(--nvidia-white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            background: var(--nvidia-dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(118, 185, 0, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--nvidia-green);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--nvidia-green);
+        }
+
+        .app-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--nvidia-green);
+            color: var(--nvidia-white);
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .hero-image {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-image {
+            width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Products Grid - NVIDIA Style Layout */
+        .products-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--nvidia-light-gray) 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .products-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2376B900" stroke-width="0.3" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--nvidia-black);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: #666;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: var(--nvidia-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(118, 185, 0, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--nvidia-green), var(--nvidia-dark-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--nvidia-white);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/></svg>');
+            animation: rotate 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--nvidia-black);
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-link {
+            color: var(--nvidia-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .product-link:hover {
+            color: var(--nvidia-dark-green);
+        }
+
+        .product-link::after {
+            content: '→';
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-link:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Copilot Section - NVIDIA Style */
+        .copilot-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--nvidia-black) 0%, var(--nvidia-gray) 100%);
+            position: relative;
+        }
+
+        .copilot-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, var(--nvidia-green) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .copilot-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copilot-text {
+            text-align: left;
+            max-width: 60%;
+        }
+
+        .copilot-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--nvidia-white);
+        }
+
+        .copilot-text p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--nvidia-white);
+            opacity: 0.9;
+        }
+
+        .copilot-image {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .copilot-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Office Apps Section - NVIDIA Style */
+        .office-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--nvidia-light-gray) 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .office-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, var(--nvidia-green) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, var(--nvidia-green) 50%, transparent 51%);
+            background-size: 40px 40px;
+            opacity: 0.05;
+        }
+
+        .office-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .office-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--nvidia-white);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(118, 185, 0, 0.15);
+        }
+
+        .office-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--nvidia-green);
+            color: var(--nvidia-white);
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        /* Windows Section - NVIDIA Style */
+        .windows-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--nvidia-black) 0%, var(--nvidia-gray) 100%);
+            position: relative;
+        }
+
+        .windows-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, var(--nvidia-green) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .windows-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .windows-image {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .windows-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .windows-text {
+            text-align: left;
+            max-width: 60%;
+        }
+
+        .windows-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--nvidia-white);
+        }
+
+        .windows-text p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--nvidia-white);
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--nvidia-black);
+            color: var(--nvidia-white);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--nvidia-green);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--nvidia-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--nvidia-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--nvidia-gray);
+            padding-top: 20px;
+            text-align: center;
+            color: #999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .language-selector svg {
+            margin-right: 5px;
+        }
+
+        .language-selector span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: var(--nvidia-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--nvidia-green);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--nvidia-white);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--nvidia-green);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--nvidia-green);
+            font-weight: bold;
+        }
+
+        .price-tag {
+            background: var(--nvidia-green);
+            color: var(--nvidia-white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .office-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .windows-section {
+                flex-direction: column;
+            }
+
+            .windows-image {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .windows-text {
+                width: 100%;
+            }
+
+            .copilot-section {
+                flex-direction: column;
+            }
+
+            .copilot-image {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .copilot-text {
+                width: 100%;
+            }
+
+            .search-container {
+                right: 10px;
+                left: 10px;
+                min-width: auto;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--nvidia-white);
+            border-radius: 50%;
+            border-top-color: var(--nvidia-green);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background: var(--nvidia-green);
+            color: var(--nvidia-white);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(118, 185, 0, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1500;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Office Apps Section Styles */
+        .office-section {
+            padding: 80px 20px;
+            background: var(--nvidia-white);
+        }
+
+        .office-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title-spaced {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--nvidia-black);
+            letter-spacing: 1.5px;
+        }
+
+        .office-apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .office-app-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--nvidia-light-gray);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .office-app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .office-app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .office-app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .word-app {
+            background-color: #2b579a;
+        }
+
+        .excel-app {
+            background-color: #217346;
+        }
+
+        .powerpoint-app {
+            background-color: #d24726;
+        }
+
+        .outlook-app {
+            background-color: #0072c6;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--nvidia-black);
+        }
+
+        .app-subtitle {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .app-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .app-learn-more {
+            color: var(--nvidia-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .app-learn-more:hover {
+            color: var(--nvidia-dark-green);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background: var(--nvidia-gray);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--nvidia-green);
+        }
+
+        /* Office Apps Section Styles */
+        .office-app-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--nvidia-white);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .office-app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--nvidia-green);
+            box-shadow: 0 15px 30px rgba(118, 185, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="images/microsoft.png" alt="Microsoft" class="microsoft-logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#products">Microsoft 365</a></li>
+                <li><a href="office.html">Office</a></li>
+                <li><a href="copilot.html">Copilot</a></li>
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+            <div class="user-actions">
+                <button class="search-btn" onclick="toggleSearch()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Search</span>
+                </button>
+                <button class="sign-in-btn" onclick="showAccountModal()">Sign in</button>
+                <div class="search-container" id="searchContainer">
+                    <input type="text" class="search-input" placeholder="Search Microsoft products..." onkeypress="handleSearch(event)">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Achieve the extraordinary</h1>
+                    <p>Microsoft 365 delivers cloud storage, security, and Microsoft Copilot in your favorite apps – all in one plan.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="cta-button">For 1 person</a>
+                        <a href="#" class="cta-button secondary">For up to 6 people</a>
+                    </div>
+                    <div class="app-icons">
+    <div class="app-icon">
+        <img src="images/word1.avif" alt="Microsoft Word">
+    </div>
+    <div class="app-icon">
+        <img src="images/excel1.avif" alt="Microsoft Excel">
+    </div>
+    <div class="app-icon">
+        <img src="images/ppt1.avif" alt="Microsoft PowerPoint">
+    </div>
+    <div class="app-icon">
+        <img src="images/outlook1.avif" alt="Microsoft Outlook">
+    </div>
+</div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/ms365.jpg" alt="Microsoft 365" class="floating-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products-section">
+            <div class="products-container">
+                <h2 class="section-title">Get more done with Microsoft Office 365 apps</h2>
+                <p class="section-subtitle">Discover powerful tools and services that transform the way you work and play</p>
+                
+                <div class="products-grid">
+                    <div class="product-card" onclick="showProductDetails('Microsoft 365')">
+                        <div class="product-image">
+                            <img src="images/ms365.jpg" alt="Microsoft 365">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Microsoft 365</h3>
+                            <p class="product-description">Premium productivity apps with intelligent cloud services that transform the way you work.</p>
+                            <a href="#" class="product-link">Learn more</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="showProductDetails('OneDrive')">
+                        <div class="product-image">
+                            <img src="images/onedrive.webp" alt="OneDrive">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">OneDrive</h3>
+                            <p class="product-description">Save your files and photos to OneDrive and access them from any device, anywhere.</p>
+                            <a href="#" class="product-link">Learn more</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="showProductDetails('Windows 11')">
+                        <div class="product-image">
+                            <img src="images/microsoft11.jpg" alt="Windows 11">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Windows 11</h3>
+                            <p class="product-description">The best Windows ever, designed to unlock your productivity and inspire your creativity.</p>
+                            <a href="#" class="product-link">Learn more</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="showProductDetails('Surface Devices')">
+                        <div class="product-image">
+                            <img src="images/surface.jpg" alt="Surface Devices">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Surface Devices</h3>
+                            <p class="product-description">Innovative laptops, tablets, and accessories designed for modern professionals.</p>
+                            <a href="#" class="product-link">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Copilot Section -->
+        <section id="copilot" class="copilot-section">
+            <div class="copilot-container">
+                <div class="copilot-content">
+                    <div class="copilot-text">
+                        <h2>Introducing Microsoft Copilot</h2>
+                        <p>Your everyday AI companion that helps you save time and focus on what matters most.</p>
+                        <a href="#" class="cta-button">Learn about Copilot</a>
+                    </div>
+                    <div class="copilot-image">
+                        <img src="images/copilot.webp" alt="Microsoft Copilot">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Office Apps Section -->
+        <section id="office" class="office-section">
+    <div class="office-container">
+        <h2 class="section-title-spaced">GET MORE DONE WITH MICROSOFT OFFICE 365 APPS</h2>
+        
+        <div class="office-apps-grid">
+            <div class="office-app-card">
+                <div class="office-app-icon word-app">
+                    <img src="images/word1.avif" alt="Microsoft Word">
+                </div>
+                <h3 class="app-title">Word</h3>
+                <h4 class="app-subtitle">WORD</h4>
+                <p class="app-description">Create and collaborate on professional-looking documents, reports, and letters.</p>
+                <a href="#" class="app-learn-more">LEARN MORE</a>
+            </div>
+            
+            <div class="office-app-card">
+                <div class="office-app-icon excel-app">
+                    <img src="images/excel1.avif" alt="Microsoft Excel">
+                </div>
+                <h3 class="app-title">Excel</h3>
+                <h4 class="app-subtitle">EXCEL</h4>
+                <p class="app-description">Organize data, track finances, and gain insights with powerful spreadsheets.</p>
+                <a href="#" class="app-learn-more">LEARN MORE</a>
+            </div>
+            
+            <div class="office-app-card">
+                <div class="office-app-icon powerpoint-app">
+                    <img src="images/ppt1.avif" alt="Microsoft PowerPoint">
+                </div>
+                <h3 class="app-title">PowerPoint</h3>
+                <h4 class="app-subtitle">POWERPOINT</h4>
+                <p class="app-description">Design and deliver compelling presentations that captivate your audience.</p>
+                <a href="#" class="app-learn-more">LEARN MORE</a>
+            </div>
+            
+            <div class="office-app-card">
+                <div class="office-app-icon outlook-app">
+                    <img src="images/outlook1.avif" alt="Microsoft Outlook">
+                </div>
+                <h3 class="app-title">Outlook</h3>
+                <h4 class="app-subtitle">OUTLOOK</h4>
+                <p class="app-description">Stay connected and organized with email, calendar, and contacts all in one place.</p>
+                <a href="#" class="app-learn-more">LEARN MORE</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Windows Section -->
+        <section id="windows" class="windows-section">
+            <div class="windows-container">
+                <div class="windows-content">
+                    <div class="windows-image">
+                        <img src="images/microsoft11.jpg" alt="Windows 11">
+                    </div>
+                    <div class="windows-text">
+                        <h2>Windows 11</h2>
+                        <p>Designed for hybrid work and learning, Windows 11 is the most secure Windows yet with a fresh new design and powerful new tools.</p>
+                        <a href="#" class="cta-button">See what's new</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Microsoft 365</a></li>
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Windows</a></li>
+                        <li><a href="#">Surface</a></li>
+                        <li><a href="#">Xbox</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Microsoft Store</h3>
+                    <ul>
+                        <li><a href="#">Account profile</a></li>
+                        <li><a href="#">Download Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Order tracking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Education</h3>
+                    <ul>
+                        <li><a href="#">Microsoft in education</a></li>
+                        <li><a href="#">Office for students</a></li>
+                        <li><a href="#">Office 365 for schools</a></li>
+                        <li><a href="#">Microsoft Azure in education</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Business</h3>
+                    <ul>
+                        <li><a href="#">Microsoft Cloud</a></li>
+                        <li><a href="#">Microsoft Security</a></li>
+                        <li><a href="#">Azure</a></li>
+                        <li><a href="#">Dynamics 365</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Developer & IT</h3>
+                    <ul>
+                        <li><a href="#">Developer Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Microsoft Learn</a></li>
+                        <li><a href="#">Microsoft Tech Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">About Microsoft</a></li>
+                        <li><a href="#">Company news</a></li>
+                        <li><a href="#">Privacy at Microsoft</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="language-selector">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span>English (United States)</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Contact Microsoft</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms of use</a>
+                    <a href="#">Trademarks</a>
+                    <a href="#">About our ads</a>
+                </div>
+                <p>&copy; 2025 Microsoft Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notification-text"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
